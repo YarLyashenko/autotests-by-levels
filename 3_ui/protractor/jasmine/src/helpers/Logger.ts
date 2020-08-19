@@ -4,7 +4,7 @@ configure({
     appenders: {
         file: {
             type: 'file',
-            filename: 'app.log'
+            filename: 'app.log',
         },
         console: {
             type: 'stdout',
@@ -16,9 +16,9 @@ configure({
     categories: {
         default: {
             appenders: ['console', 'file'],
-            level: 'info'
-        }
-    }
+            level: 'info',
+        },
+    },
 });
 
 export const Logger = (namespace: string) => getLogger(namespace);

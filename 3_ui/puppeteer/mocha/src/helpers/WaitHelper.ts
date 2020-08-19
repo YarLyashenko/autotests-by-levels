@@ -9,7 +9,7 @@ import {IRootEl} from './SelectorHelper';
 
 async function checkCondition(
     condition: () => Promise<boolean>, interval: number, timeout: number,
-    resolve: () => void, reject: (reason: Error) => void, errMsg?: string
+    resolve: () => void, reject: (reason: Error) => void, errMsg?: string,
 ) {
     try {
         const value = await condition();
@@ -61,7 +61,7 @@ export class WaitHelper {
             },
             timeout,
             config.timeout.sec / 10,
-            `The ${this.puppeteer.constructor.name} element with ${JSON.stringify(this.rootEl)} selector ${!present ? 'is' : 'isn"t'} present`
+            `The ${this.puppeteer.constructor.name} element with ${JSON.stringify(this.rootEl)} selector ${!present ? 'is' : 'isn"t'} present`,
         );
     }
 
@@ -104,7 +104,7 @@ export class WaitHelper {
             },
             timeout,
             config.timeout.sec / 5,
-            `Url doesn"t equal ${expectedUrl}. Current: ${page.url()}`
+            `Url doesn"t equal ${expectedUrl}. Current: ${page.url()}`,
         );
     }
 
@@ -130,7 +130,7 @@ export class WaitHelper {
 
     @step()
     public until(
-        condition: () => Promise<boolean>, timeout = config.timeout.l, interval = config.timeout.sec / 10, errMsg?: string
+        condition: () => Promise<boolean>, timeout = config.timeout.l, interval = config.timeout.sec / 10, errMsg?: string,
     ): Promise<void> {
         return new Promise((resolve, reject) => checkCondition(condition, interval, timeout, resolve, reject, errMsg));
     }

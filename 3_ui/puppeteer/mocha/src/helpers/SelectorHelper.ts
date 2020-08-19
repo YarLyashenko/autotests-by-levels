@@ -66,7 +66,7 @@ function getSelectorFromElementHandle(element: ElementHandle, params: TParams = 
                                             const valuesForSkip = [
                                                 'ng-version',
                                                 'width', 'height', 'style', 'aria-hidden', 'role', 'color', 'focusable', 'viewBox',
-                                                'xmlns', 'tabindex', 'layout', 'src', 'alt', 'maxlength'
+                                                'xmlns', 'tabindex', 'layout', 'src', 'alt', 'maxlength',
                                             ];
 
                                             if (valuesForSkip.includes(name)) {
@@ -99,7 +99,7 @@ function getSelectorFromElementHandle(element: ElementHandle, params: TParams = 
             return root.reverse().map(({name, attrs}) => name + attrs).join(' > ');
         },
         params,
-        parents
+        parents,
     );
 }
 
@@ -109,7 +109,7 @@ function getSelectorFromElementHandle(element: ElementHandle, params: TParams = 
 export const $ = (rootEl: IRootEl | string, child: string): IRootEl => {
     const parent = typeof rootEl === 'string' ? rootEl : rootEl.selector;
     return {
-        selector: parent + ' ' + child
+        selector: parent + ' ' + child,
     };
 };
 
@@ -214,7 +214,7 @@ export const elementHandler = (child: IRootEl | ElementHandle, parent?: IRootEl 
             } else {
                 return child.selector;
             }
-        }
+        },
     };
 };
 

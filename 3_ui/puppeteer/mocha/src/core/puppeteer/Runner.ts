@@ -28,7 +28,7 @@ export async function run(): Promise<IRunner> {
     return {
         browser,
         page,
-        target
+        target,
     };
 }
 

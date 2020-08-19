@@ -7,12 +7,12 @@ export const {argv} = yargs
             demandOption: true,
             choices: ['info', 'trace', 'debug', 'warn', 'error', 'all', 'fatal', 'off'],
             type: 'string',
-            default: 'info'
+            default: 'info',
         },
         baseUrl: {
             description: 'base url',
             demandOption: false,
-            type: 'string'
-        }
+            type: 'string',
+        },
     })
     .help();

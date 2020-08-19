@@ -17,7 +17,7 @@ enum TestStatus {
     failed = 'failed',
     pending = 'pending',
     disabled = 'disabled',
-    skipped = 'skipped'
+    skipped = 'skipped',
 }
 
 export class ScreenshotReporter implements CustomReporter {

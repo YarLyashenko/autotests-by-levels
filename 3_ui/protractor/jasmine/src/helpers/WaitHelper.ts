@@ -13,12 +13,12 @@ export class WaitHelper {
             if (this.protractor.rootEl instanceof ElementFinder) {
                 await this.protractor.browser.wait(
                     this.protractor.EC.visibilityOf(this.protractor.rootEl),
-                    timeout || TIMEOUT.sec
+                    timeout || TIMEOUT.sec,
                 );
             } else {
                 await this.protractor.browser.wait(
                     this.protractor.EC.visibilityOf(this.protractor.rootEl.get(1)),
-                    timeout || TIMEOUT.sec
+                    timeout || TIMEOUT.sec,
                 );
             }
         } catch (e) {
@@ -32,12 +32,12 @@ export class WaitHelper {
             if (this.protractor.rootEl instanceof ElementFinder) {
                 await this.protractor.browser.wait(
                     this.protractor.EC.presenceOf(this.protractor.rootEl),
-                    timeout || TIMEOUT.sec
+                    timeout || TIMEOUT.sec,
                 );
             } else {
                 await this.protractor.browser.wait(
                     this.protractor.EC.presenceOf(this.protractor.rootEl.get(1)),
-                    timeout || TIMEOUT.sec
+                    timeout || TIMEOUT.sec,
                 );
             }
         } catch (e) {
@@ -51,7 +51,7 @@ export class WaitHelper {
             try {
                 return this.protractor.browser.wait(
                     this.protractor.EC.urlIs(url || this.protractor.baseUrl + this.protractor.url),
-                    timeout || TIMEOUT.sec
+                    timeout || TIMEOUT.sec,
                 );
             } catch (e) {
                 e.message = errorMessage ||
@@ -69,12 +69,12 @@ export class WaitHelper {
             if (this.protractor.rootEl instanceof ElementFinder) {
                 await this.protractor.browser.wait(
                     this.protractor.EC.elementToBeClickable(this.protractor.rootEl),
-                    timeout || TIMEOUT.sec
+                    timeout || TIMEOUT.sec,
                 );
             } else {
                 await this.protractor.browser.wait(
                     this.protractor.EC.elementToBeClickable(this.protractor.rootEl.get(1)),
-                    timeout || TIMEOUT.sec
+                    timeout || TIMEOUT.sec,
                 );
             }
         } catch (e) {

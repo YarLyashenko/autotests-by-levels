@@ -6,5 +6,5 @@ export const mochaHooks = {
     },
     async afterAll() {
         await stop();
-    }
+    },
 };

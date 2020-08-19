@@ -34,7 +34,7 @@ export class ScreenshotsHelper {
         return {
             name,
             type: 'image/png',
-            content
+            content,
         };
     }
 }

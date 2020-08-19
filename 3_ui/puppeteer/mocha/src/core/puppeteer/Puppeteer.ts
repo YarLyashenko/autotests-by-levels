@@ -43,14 +43,14 @@ export abstract class Puppeteer {
 
     public $(childSelector: string): IRootEl {
         return {
-            selector: this.rootEl.selector + ' ' + childSelector
+            selector: this.rootEl.selector + ' ' + childSelector,
         };
     }
 
     public $$(childSelector: string): IRootEl {
         return {
             selector: this.rootEl.selector + ' ' + childSelector,
-            isCollection: true
+            isCollection: true,
         };
     }
 
