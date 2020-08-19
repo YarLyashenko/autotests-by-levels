@@ -12,7 +12,7 @@ export {
     before,
     beforeEach,
     after,
-    afterEach
+    afterEach,
 } from 'mocha';
 
 export function it(title: string, fn: () => void | Promise<void>) {

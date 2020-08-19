@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "experimentalDecorators": true,
+    "types": [
+      "node",
+      "webdriverio",
+      "@wdio/mocha-framework"
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

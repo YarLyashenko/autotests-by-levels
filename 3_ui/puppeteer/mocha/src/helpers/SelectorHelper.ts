@@ -28,7 +28,7 @@ type TParams = 'index' | 'attributes';
  * input[type='text'].rp-input[placeholder='Login'][data-js-login][value='default']
  *
  *
- * TODO: add possibility to work with ElementHandle[] and xPath
+ * TODO: add possibility to work with ElementHandle[] and xPath. + find by text
  */
 function getSelectorFromElementHandle(element: ElementHandle, params: TParams = 'index', parents = 3): Promise<string> {
     return element.evaluate(

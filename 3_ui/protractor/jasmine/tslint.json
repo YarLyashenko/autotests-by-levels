@@ -7,7 +7,10 @@
     ],
     "curly": true,
     "eofline": true,
-    "linebreak-style": [true, "LF"],
+    "linebreak-style": [
+      true,
+      "LF"
+    ],
     "forin": false,
     "indent": [
       true,
@@ -61,10 +64,13 @@
       true,
       "allow-null-check"
     ],
-    "trailing-comma": {
-      "multiline": "always",
-      "singleline": "never"
-    },
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "always",
+        "singleline": "never"
+      }
+    ],
     "variable-name": false,
     "whitespace": [
       true,
