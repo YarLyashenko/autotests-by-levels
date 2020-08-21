@@ -2,7 +2,7 @@ const {Given, When, Then} = require('cucumber');
 const {getPage} = require('../po/pages');
 const {expect} = require('chai');
 
-Given(/^I am on '(.*)' page$/, page => getPage(page).get());
+Given(/^I am on '(.*)' page$/, page => getPage(page).open());
 
 When(/Step/, ({rawTable}) => {
     console.log(rawTable);

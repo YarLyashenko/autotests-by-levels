@@ -1,7 +1,6 @@
-import {protractor} from 'protractor';
 import {HomePage} from '../../po/pages/home/HomePage';
 
-const homePage = new HomePage(protractor);
+const homePage = new HomePage();
 
 describe('Simple search.', () => {
 

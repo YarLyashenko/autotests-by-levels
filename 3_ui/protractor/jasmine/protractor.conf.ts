@@ -1,10 +1,5 @@
 import {Config, protractor} from 'protractor';
-import {
-    jasmineAllureReporter,
-    jUnitXmlReporter,
-    screenshotReporter,
-    specReporter,
-} from './reporter.conf';
+import {jasmineAllureReporter, jUnitXmlReporter, screenshotReporter, specReporter} from './reporter.conf';
 
 export const TIMEOUT = {
     sec: 1000,

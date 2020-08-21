@@ -1,5 +1,6 @@
 import {Protractor} from '../core/protractor/Protractor';
 
+// TODO fix these asserts and waits
 export abstract class BaseAsserts {
 
     protected isPositive = true;

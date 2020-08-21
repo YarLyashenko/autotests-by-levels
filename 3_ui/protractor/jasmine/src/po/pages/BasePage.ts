@@ -17,7 +17,7 @@ export abstract class BasePage extends Protractor {
         this.asserts = new PageAsserts(this);
     }
 
-    public get(url = this.url) {
+    public open(url = this.url) {
         return this.browser.get(url);
     }
 

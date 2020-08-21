@@ -6,7 +6,7 @@ const app = new App();
 describe('Simple search.', () => {
 
     before(async () => {
-        await app.page('Home').get();
+        await app.page('Home').open();
     });
 
     it('Executing simple search', async () => {

@@ -14,7 +14,7 @@ class BasePage extends Protractor {
         this.header = new HeaderBlock(this.protractor);
     }
 
-    get(url = this.url) {
+    open(url = this.url) {
         return this.browser.get(url);
     }
 

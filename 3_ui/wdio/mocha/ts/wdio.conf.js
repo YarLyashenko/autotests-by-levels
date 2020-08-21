@@ -1,3 +1,13 @@
+const {readdirSync, copyFileSync, existsSync, mkdirSync, unlinkSync, createWriteStream} = require('fs');
+const allure = require('allure-commandline');
+
+const ALLURE_SOURCE = 'artifacts/allure/source';
+const ALLURE_SOURCE_HISTORY = 'artifacts/allure/source/history';
+const ALLURE_REPORT = 'artifacts/allure/report';
+const ALLURE_REPORT_HISTORY = 'artifacts/allure/report/history';
+
+const SCREENSHOTS_DIR = './artifacts/screenshots';
+
 exports.config = {
     //
     // ====================
@@ -17,7 +27,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './test/specs/**/*.ts'
+        './src/tests/**/*.ts'
     ],
     // Patterns to exclude.
     exclude: [
@@ -90,7 +100,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://localhost',
+    baseUrl: 'https://angular.io',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -124,7 +134,18 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter.html
-    reporters: ['spec'],
+    reporters: [
+        'spec',
+        ['junit', {
+            outputDir: './artifacts/junit',
+            outputFileFormat: function (options) {
+                return `results-${options.cid}.${options.capabilities}.xml`;
+            },
+        }],
+        ['allure', {
+            outputDir: './artifacts/allure/source',
+        }]
+    ],
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
@@ -147,8 +168,17 @@ exports.config = {
      * @param {Object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onPrepare: function (config, capabilities) {
-    // },
+    onPrepare: function (config, capabilities) {
+        if (existsSync(ALLURE_SOURCE)) {
+            const sourceFiles = readdirSync(ALLURE_SOURCE);
+
+            if (sourceFiles) {
+                sourceFiles
+                    .filter(file => file.match(/(.*)\.(.*)/))
+                    .forEach(file => unlinkSync(`${ALLURE_SOURCE}/${file}`));
+            }
+        }
+    },
     /**
      * Gets executed before a worker process is spawned and can be used to initialise specific service
      * for that worker as well as modify runtime environments in an async fashion.
@@ -210,8 +240,21 @@ exports.config = {
     /**
      * Function to be executed after a test (in Mocha/Jasmine).
      */
-    // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-    // },
+    afterTest: async function (test, context, {error, result, duration, passed, retries}) {
+        if (error) {
+            const fileName = `${test.title.replace(/ /gm, '_')}_${new Date().getTime()}`,
+                screenFilePath = `${SCREENSHOTS_DIR}/${fileName}.png`;
+
+            const screenShot = await browser.takeScreenshot();
+
+            existsSync(SCREENSHOTS_DIR) || mkdirSync(SCREENSHOTS_DIR, {recursive: true});
+            const decodedImage = Buffer.from(screenShot, 'base64');
+
+            const stream = createWriteStream(screenFilePath);
+            stream.write(decodedImage);
+            stream.end();
+        }
+    },
     /**
      * Hook that gets executed after the suite has ended
      * @param {Object} suite suite details
@@ -252,13 +295,41 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {<Object>} results object containing test results
      */
-    // onComplete: function(exitCode, config, capabilities, results) {
-    // },
+    onComplete: function (exitCode, config, capabilities, results) {
+
+        if (existsSync(ALLURE_REPORT_HISTORY)) {
+            const historyFiles = readdirSync(ALLURE_REPORT_HISTORY);
+
+            if (historyFiles) {
+
+                existsSync(ALLURE_SOURCE_HISTORY) || mkdirSync(ALLURE_SOURCE_HISTORY, {recursive: true});
+                historyFiles.forEach(file => copyFileSync(`${ALLURE_REPORT_HISTORY}/${file}`, `${ALLURE_SOURCE_HISTORY}/${file}`));
+            }
+        }
+
+        const reportError = new Error('Could not generate Allure report');
+        const generation = allure(['generate', ALLURE_SOURCE, '-c', '-o', ALLURE_REPORT]);
+
+        return new Promise((resolve, reject) => {
+            const generationTimeout = setTimeout(() => reject(reportError), 5000);
+
+            generation.on('exit', function (exitCode) {
+                clearTimeout(generationTimeout);
+
+                if (exitCode !== 0) {
+                    return reject(reportError);
+                }
+
+                console.log('Allure report successfully generated');
+                resolve();
+            });
+        });
+    },
     /**
-    * Gets executed when a refresh happens.
-    * @param {String} oldSessionId session ID of the old session
-    * @param {String} newSessionId session ID of the new session
-    */
+     * Gets executed when a refresh happens.
+     * @param {String} oldSessionId session ID of the old session
+     * @param {String} newSessionId session ID of the new session
+     */
     //onReload: function(oldSessionId, newSessionId) {
     //}
 }

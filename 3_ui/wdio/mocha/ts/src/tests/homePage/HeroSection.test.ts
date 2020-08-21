@@ -1,9 +1,8 @@
-import {protractor} from 'protractor';
 import {HomePage} from '../../po/pages/home/HomePage';
 import {DocsPage} from '../../po/pages/docs/DocsPage';
 
-const homePage = new HomePage(protractor);
-const docsPage = new DocsPage(protractor);
+const homePage = new HomePage();
+const docsPage = new DocsPage();
 
 describe('Hero section.', () => {
 
@@ -19,6 +18,6 @@ describe('Hero section.', () => {
         await homePage.infoBlock.startedBtn.click();
         await docsPage.asserts.opened();
 
-        // await homePage.asserts.not.opened(); // example of a negative assert
+        await homePage.asserts.not.opened(); // example of a negative assert
     });
 });

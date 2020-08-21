@@ -1,6 +1,6 @@
 // @ts-ignore
 import Reporters = require('jasmine-reporters');
-import {SpecReporter, StacktraceOption} from 'jasmine-spec-reporter';
+import {SpecReporter} from 'jasmine-spec-reporter';
 import {JasmineAllureReporter} from 'allure-jasmine';
 import {ScreenshotReporter} from './src/helpers/Reporter';
 
@@ -8,14 +8,6 @@ const ARTIFACTS_DIR = './artifacts';
 
 
 export const specReporter = new SpecReporter({
-    spec: {
-        displayStacktrace: StacktraceOption.NONE,
-        displayDuration: true,
-    },
-    summary: {
-        displayStacktrace: StacktraceOption.PRETTY,
-        displayDuration: true,
-    },
     colors: {
         enabled: true,
     },

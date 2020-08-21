@@ -5,7 +5,7 @@ const {getPage} = require('../po/pages');
 
 setDefaultTimeout(70000);
 
-BeforeAll(() => getPage('Home').get());
+BeforeAll(() => getPage('Home').open());
 
 Before({tag: '@smoke and @user\\(Pro\\)', timeout: 80000}, ({pickle}) => {
     pickle.tags.find(({name}) => name.match(/@add\(\d+\)/));
