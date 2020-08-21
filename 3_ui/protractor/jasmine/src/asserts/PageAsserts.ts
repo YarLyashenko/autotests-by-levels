@@ -24,12 +24,12 @@ export class PageAsserts extends BaseAsserts {
                 urlIs,
                 `
                 [assert::isOpened] The page ${this.page.constructor.name} ${!this.isPositive ? 'doesn"t contain' : 'contains'} ${this.page.baseUrl + this.page.url}
-                Current url: ${await this.page.getCurrentUrl()}`
+                Current url: ${await this.page.getCurrentUrl()}`,
             );
 
             expect(this.isPositive).toBe(
                 isDisplayed,
-                `[assert::isOpened] The element ${this.page.locator()} is ${isDisplayed} visible on ${this.page.constructor.name} but should be ${this.isPositive} visible`
+                `[assert::isOpened] The element ${this.page.locator()} is ${isDisplayed} visible on ${this.page.constructor.name} but should be ${this.isPositive} visible`,
             );
         }
     }

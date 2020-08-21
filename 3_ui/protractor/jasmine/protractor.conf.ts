@@ -1,10 +1,5 @@
 import {Config, protractor} from 'protractor';
-import {
-    jasmineAllureReporter,
-    jUnitXmlReporter,
-    screenshotReporter,
-    specReporter
-} from './reporter.conf';
+import {jasmineAllureReporter, jUnitXmlReporter, screenshotReporter, specReporter} from './reporter.conf';
 
 export const TIMEOUT = {
     sec: 1000,
@@ -14,7 +9,7 @@ export const TIMEOUT = {
     m: 10000,
     l: 20000,
     xl: 30000,
-    min: 60000
+    min: 60000,
 };
 
 export const config: Config = {
@@ -26,13 +21,13 @@ export const config: Config = {
     allScriptsTimeout: TIMEOUT.xl,
 
     specs: [
-        './src/tests/**/*.ts'
+        './src/tests/**/*.ts',
     ],
 
     capabilities: {
         browserName: 'chrome',
         shardTestFiles: true,
-        maxInstances: 2
+        maxInstances: 2,
     },
 
     jasmineNodeOpts: {
@@ -50,5 +45,5 @@ export const config: Config = {
 
         await protractor.browser.waitForAngularEnabled(true);
         return protractor.browser.manage().window().setSize(1920, 1080);
-    }
+    },
 };

@@ -6,7 +6,7 @@ const app = new App();
 describe('Hero section.', () => {
 
     before(async () => {
-        await app.page('Home').get();
+        await app.page('Home').open();
         await app.page('Home').asserts.opened();
     });
 
@@ -18,6 +18,6 @@ describe('Hero section.', () => {
         await app.page('Home').infoBlock.startedBtn.click();
         await app.page('Docs').asserts.opened();
 
-        // await app.page('Home').asserts.not.opened(); // example of a negative assert
+        await app.page('Home').asserts.not.opened(); // example of a negative assert
     });
 });

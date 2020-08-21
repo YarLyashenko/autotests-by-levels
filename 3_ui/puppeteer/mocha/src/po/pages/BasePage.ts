@@ -20,7 +20,7 @@ export abstract class BasePage extends Puppeteer {
     }
 
     @step()
-    public get(url = config.baseUrl + this.url, options?: DirectNavigationOptions) {
+    public open(url = config.baseUrl + this.url, options?: DirectNavigationOptions) {
         return page.goto(url, options);
     }
 }

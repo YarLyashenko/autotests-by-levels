@@ -6,7 +6,7 @@ const homePage = new HomePage(protractor);
 describe('Simple search.', () => {
 
     beforeEach(async () => {
-        await homePage.get();
+        await homePage.open();
     });
 
     it('Executing simple search', async () => {

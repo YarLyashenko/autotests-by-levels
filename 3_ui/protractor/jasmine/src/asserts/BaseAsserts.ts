@@ -1,5 +1,6 @@
 import {Protractor} from '../core/protractor/Protractor';
 
+// TODO fix these asserts and waits
 export abstract class BaseAsserts {
 
     protected isPositive = true;
@@ -20,7 +21,7 @@ export abstract class BaseAsserts {
         } finally {
             expect(this.isPositive).toBe(
                 isDisplayed,
-                `[assert::isDisplayed] The element ${this.protractor.constructor.name} with locator ${this.protractor.locator()} is ${isDisplayed} but should be ${this.isPositive} visible`
+                `[assert::isDisplayed] The element ${this.protractor.constructor.name} with locator ${this.protractor.locator()} is ${isDisplayed} but should be ${this.isPositive} visible`,
             );
         }
     }

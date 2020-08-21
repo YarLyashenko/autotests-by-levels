@@ -13,7 +13,7 @@ export class Response {
         return {
             get: () => this.response.body,
             assertContract: () => this.asserts.contract(this.jsonSchema!),
-            ...this.asserts.call(this.response.body) // --> expect: this.asserts.expect(this.response.body)
+            ...this.asserts.call(this.response.body), // --> expect: this.asserts.expect(this.response.body)
         };
     }
 
@@ -24,7 +24,7 @@ export class Response {
     get headers(): {get: () => Headers, expect: Chai.Assertion} {
         return {
             get: () => this.response.headers,
-            ...this.asserts.call(this.response.headers)
+            ...this.asserts.call(this.response.headers),
         };
     }
 

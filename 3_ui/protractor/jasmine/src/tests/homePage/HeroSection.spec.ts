@@ -8,7 +8,7 @@ const docsPage = new DocsPage(protractor);
 describe('Hero section.', () => {
 
     beforeEach(async () => {
-        await homePage.get();
+        await homePage.open();
     });
 
     it('Verification that hero section is displayed', async () => {

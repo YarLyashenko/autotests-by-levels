@@ -20,7 +20,7 @@ export class NetworkHelper {
     public addListener<K extends keyof PageEventObj>(
         method: keyof EventEmitter,
         eventName: K,
-        handler?: (e: PageEventObj[K], ...args: any[]) => void
+        handler?: (e: PageEventObj[K], ...args: any[]) => void,
     ) {
         this.logger.info(`addListener::Actions with listeners. method: ${method}, eventName: ${eventName}`);
         // @ts-ignore
