@@ -2,7 +2,8 @@
   "name": "jest",
   "version": "1.0.0",
   "dependencies": {
-    "jest": "^26.0.1"
+    "@types/jest": "^26.0.10",
+    "jest": "^26.4.2"
   },
   "scripts": {
     "test": "jest --coverage=true"

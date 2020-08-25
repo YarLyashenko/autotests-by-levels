@@ -301,7 +301,6 @@ exports.config = {
             const historyFiles = readdirSync(ALLURE_REPORT_HISTORY);
 
             if (historyFiles) {
-
                 existsSync(ALLURE_SOURCE_HISTORY) || mkdirSync(ALLURE_SOURCE_HISTORY, {recursive: true});
                 historyFiles.forEach(file => copyFileSync(`${ALLURE_REPORT_HISTORY}/${file}`, `${ALLURE_SOURCE_HISTORY}/${file}`));
             }
@@ -311,7 +310,7 @@ exports.config = {
         const generation = allure(['generate', ALLURE_SOURCE, '-c', '-o', ALLURE_REPORT]);
 
         return new Promise((resolve, reject) => {
-            const generationTimeout = setTimeout(() => reject(reportError), 5000);
+            const generationTimeout = setTimeout(() => reject(reportError), 10000);
 
             generation.on('exit', function (exitCode) {
                 clearTimeout(generationTimeout);
