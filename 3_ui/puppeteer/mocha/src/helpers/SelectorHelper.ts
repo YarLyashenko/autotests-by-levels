@@ -104,12 +104,20 @@ function getSelectorFromElementHandle(element: ElementHandle, params: TParams = 
 }
 
 /**
- * This function is necessary to concatenate selectors within a constructor.
+ * These functions are necessary to concatenate selectors within a constructor.
  */
 export const $ = (rootEl: IRootEl | string, child: string): IRootEl => {
     const parent = typeof rootEl === 'string' ? rootEl : rootEl.selector;
     return {
         selector: parent + ' ' + child,
+    };
+};
+
+export const $$ = (rootEl: IRootEl | string, child: string): IRootEl => {
+    const parent = typeof rootEl === 'string' ? rootEl : rootEl.selector;
+    return {
+        selector: parent + ' ' + child,
+        isCollection: true,
     };
 };
 

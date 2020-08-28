@@ -1,4 +1,4 @@
-import {elementHandler, IRootEl} from '../../helpers/SelectorHelper';
+import {$, $$, elementHandler, IRootEl} from '../../helpers/SelectorHelper';
 import {ClickOptions, ElementHandle} from 'puppeteer';
 import {Logger} from '../../helpers/Logger';
 import * as log4js from 'log4js';
@@ -20,16 +20,6 @@ export abstract class Puppeteer {
         return elementHandler(this.rootEl);
     }
 
-    public async elements(): Promise<ElementHandle[]> {
-        const elms = await this.elementHandler.$$();
-
-        if (!elms.length) {
-            throw new Error(`The elements was not found: ${JSON.stringify(this.rootEl)} on ${this.constructor.name}`);
-        }
-
-        return elms;
-    }
-
     public async element(): Promise<ElementHandle> {
 
         const elem = await this.elementHandler.$();
@@ -41,17 +31,22 @@ export abstract class Puppeteer {
         return elem;
     }
 
+    public async elements(): Promise<ElementHandle[]> {
+        const elms = await this.elementHandler.$$();
+
+        if (!elms.length) {
+            throw new Error(`The elements was not found: ${JSON.stringify(this.rootEl)} on ${this.constructor.name}`);
+        }
+
+        return elms;
+    }
+
     public $(childSelector: string): IRootEl {
-        return {
-            selector: this.rootEl.selector + ' ' + childSelector,
-        };
+        return $(this.rootEl, childSelector);
     }
 
     public $$(childSelector: string): IRootEl {
-        return {
-            selector: this.rootEl.selector + ' ' + childSelector,
-            isCollection: true,
-        };
+        return $$(this.rootEl, childSelector);
     }
 
     public selectorFromElement(element: ElementHandle): Promise<string> {
