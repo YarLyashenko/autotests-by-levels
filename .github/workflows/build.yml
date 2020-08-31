@@ -20,4 +20,4 @@ jobs:
       - name: Install Dependencies
         run: cd 1_unit/jest/ && npm i
       - name: Run tests
-        run: npm test
+        run: cd 1_unit/jest/ && npm test
