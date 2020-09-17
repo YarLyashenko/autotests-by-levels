@@ -1,0 +1,14 @@
+theme:workflow:
+  - ".github/**"
+
+theme:unit:
+  - "1_init/**"
+
+theme:api:
+  - "2_api/**"
+
+theme:ui:
+  - "3_ui/**"
+
+theme:performance:
+  - "4_performance/**"
