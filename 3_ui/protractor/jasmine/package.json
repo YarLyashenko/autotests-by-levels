@@ -13,11 +13,11 @@
   },
   "dependencies": {
     "@types/jasmine": "^2.8.0",
-    "@types/node": "^12.12.42",
+    "@types/node": "^12.12.61",
     "allure-commandline": "^2.13.0",
     "allure-jasmine": "^2.0.0-beta.8",
     "copyfiles": "^2.3.0",
-    "husky": "^4.2.5",
+    "husky": "^4.3.0",
     "jasmine-reporters": "2.3.2",
     "jasmine-spec-reporter": "5.0.2",
     "log4js": "^6.3.0",

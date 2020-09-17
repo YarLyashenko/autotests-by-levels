@@ -2,7 +2,7 @@
   "name": "jest",
   "version": "1.0.0",
   "dependencies": {
-    "@types/jest": "^26.0.10",
+    "@types/jest": "^26.0.14",
     "jest": "^26.4.2"
   },
   "scripts": {

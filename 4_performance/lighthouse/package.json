@@ -1,0 +1,11 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "node ./src/tests/main.js"
+  },
+  "dependencies": {
+    "lighthouse": "^6.3.0",
+    "puppeteer": "^5.3.0"
+  }
+}
