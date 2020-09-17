@@ -1,4 +1,4 @@
-name: "Add theme labels"
+name: Add theme labels
 
 on:
   - pull_request
