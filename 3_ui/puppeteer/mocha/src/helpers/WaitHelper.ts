@@ -44,7 +44,7 @@ export class WaitHelper {
     }
 
     @step()
-    public present(present = true, timeout = config.timeout.sec) {
+    public present(present = true, timeout = config.timeout.xss) {
         return this.until(
             async () => {
                 try {
@@ -61,12 +61,12 @@ export class WaitHelper {
             },
             timeout,
             config.timeout.sec / 10,
-            `The ${this.puppeteer.constructor.name} element with ${JSON.stringify(this.rootEl)} selector ${!present ? 'is' : 'isn"t'} present`,
+            `The "${this.puppeteer.constructor.name}" element with "${JSON.stringify(this.rootEl)}" selector ${!present ? 'is' : 'isn"t'} present`,
         );
     }
 
     @step()
-    public async visible(visible = true, timeout = config.timeout.sec) {
+    public async visible(visible = true, timeout = config.timeout.xss) {
         const options = {visible, timeout};
 
         await this.present(visible, timeout);
@@ -94,7 +94,7 @@ export class WaitHelper {
     }
 
     @step()
-    public async url(timeout = config.timeout.sec) {
+    public async url(timeout = config.timeout.xss) {
         const expectedUrl = config.baseUrl + (this.puppeteer instanceof BasePage ? this.puppeteer.url : '');
 
         return this.until(
@@ -104,7 +104,7 @@ export class WaitHelper {
             },
             timeout,
             config.timeout.sec / 5,
-            `Url doesn"t equal ${expectedUrl}. Current: ${page.url()}`,
+            `Url doesn't equal "${expectedUrl}". Current: "${page.url()}"`,
         );
     }
 

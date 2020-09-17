@@ -21,9 +21,8 @@ export class PageAsserts extends BaseAsserts {
             //
         } finally {
             const message =
-                `[assert::opened] The ${this.basePage.constructor.name} (${JSON.stringify(this.rootEl)})
-                        ${!this.isPositive ? 'doesn"t contain' : 'contains'} ${config.baseUrl + this.basePage.url} Current url: ${page.url()}
-                        `;
+                `[assert::opened] The "${this.basePage.constructor.name}" (${JSON.stringify(this.rootEl)}) ${!this.isPositive ? 'shouldn\'t' : 'should'} be "${config.baseUrl + this.basePage.url}".
+                        Current url: "${page.url()}"`;
 
             this.expect(this.isPositive).to.be.equal(urlIs, message);
         }

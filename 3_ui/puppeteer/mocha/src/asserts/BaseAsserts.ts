@@ -31,9 +31,8 @@ export abstract class BaseAsserts {
             //
         } finally {
             const message =
-                `[assert::visible] The ${this.puppeteer.constructor.name} element with ${JSON.stringify(this.rootEl)} locator
-                        is ${isVisible!} but should be ${this.isPositive} visible
-                        `;
+                `[assert::visible] The "${this.puppeteer.constructor.name}" element with "${JSON.stringify(this.rootEl)}" locator
+                        is "${isVisible!}" but should be "${this.isPositive}" visible`;
 
             this.expect(this.isPositive).to.be.equal(isVisible, message);
         }

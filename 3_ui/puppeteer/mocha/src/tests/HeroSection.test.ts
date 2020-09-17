@@ -18,6 +18,6 @@ describe('Hero section.', () => {
         await app.page('Home').infoBlock.startedBtn.click();
         await app.page('Docs').asserts.opened();
 
-        await app.page('Home').asserts.not.opened(); // example of a negative assert
+        await app.page('Home').asserts.not.opened();
     });
 });
